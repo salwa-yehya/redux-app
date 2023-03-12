@@ -28,13 +28,13 @@ switch($method){
             $stmt->bindParam(':id', $path[4]);
 
             $stmt->execute();
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $users = $stmt->fetch(PDO::FETCH_ASSOC);
 
         }else{
 
             $stmt =$conn->prepare($sql);
             $stmt->execute();
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $users = $stmt->fetch(PDO::FETCH_ASSOC);
         }
         
         echo json_encode( $users);

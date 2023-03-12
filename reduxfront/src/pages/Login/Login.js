@@ -1,12 +1,29 @@
-import React from 'react';
+import React , {useState}from 'react';
 import { Link } from 'react-router-dom';
+
+import {useSelector,useDispatch } from 'react-redux';
+import {login} from "../../actions/index";
 
 import './login.css';
 
 
 const Login = () => {
+  const dispatch=useDispatch();
+  const admin=useSelector(state=>state.login.admin);
+  const error=useSelector(state=>state.login.error);
 
+      if(admin !== ''){
+          window.location.href = "/";
+      }
+  
+    
+  const[email,setEmail]=useState('');
+  const[password,setPassword]=useState('');
 
+const LoginFun=(e)=>{
+  e.preventDefault();
+  dispatch(login(email,password))
+}
   return (
     <div className="wrapper">
         <section className="sign-in-page">
@@ -21,14 +38,16 @@ const Login = () => {
 
               <form className="mt-4">
                     <div className="form-group">
-                    <input type="text" required="required" className="form-control mb-0" placeholder=" Email" />
+                    <input type="text" required="required" className="form-control mb-0" placeholder=" Email" onChange={(e)=>setEmail(e.target.value)}/>
                     </div>
 
                     <div className="form-group">
-                    <input type="text" required="required" className="form-control mb-0" placeholder=" Password" />
+                    <input type="text" required="required" className="form-control mb-0" placeholder=" Password" onChange={(e)=>setPassword(e.target.value)} />
                     </div>
-
-                    <button type="submit" className="btnn-login btn-primary " >Sign in</button>
+                    <div id='Error-div'>
+                   <span>{error}</span>
+                    </div>
+                    <button type="submit" className="btnn-login btn-primary " onClick={(e)=> LoginFun(e)}>Sign in</button>
                    
                     <div className="sign-info">
                     <span className="dark-color d-inline-block line-height-2 para2-login">Don't Have Account ?<Link to={'/register'}> register now</Link></span>

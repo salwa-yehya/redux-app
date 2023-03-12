@@ -110,7 +110,7 @@ const Register = () => {
                   </div>
 
                   <div className="sign-info">
-                    <span className="dark-color d-inline-block line-height-2 para2-reg">Already Have Account ? <Link to={'/'}> Log in</Link></span>
+                    <span className="dark-color d-inline-block line-height-2 para2-reg">Already Have Account ? <Link to={'/login'}> Log in</Link></span>
                    
                   </div>
                 </form>
